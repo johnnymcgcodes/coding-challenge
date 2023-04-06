@@ -17,7 +17,7 @@ try {
     if (typeof arguments[i] !== "number") {
       throw new Error("All arguments must be numbers");
     }
-		// add number to number_container and update count of that number
+		// add number to number_container and/or update count of that number
     number_container[arguments[i]] = 1 + (number_container[arguments[i]] || 0);
   }
 
