@@ -1,7 +1,7 @@
 const { forEach } = require("lodash");
 
 module.exports.run = async function(movies) {
-/*
+  /*
 	You are given a list of urls that will be used to search up movies.
 	Make a GET call with axios using the given urls to search each movies.
 	Then return an array of objects with the properties 'Title, Year, Genre' of each movie in the same order it came in as.
@@ -18,25 +18,24 @@ module.exports.run = async function(movies) {
 
 	Write your code below the comment.
 */
-var collected_movies = []
-// api key for OMDB
-// const api = "&apikey=f061929b";
-const axios = require("axios");
-for (var i = 0; i < movies.length; i++) {
-  // +api;
-  var movie_url = movies[i];
-  try {
-    const response = await axios.get(movie_url);
-    let title = response.data.Title;
-    let year = response.data.Year;
-    let genres = response.data.Genre;
-    let newMovie = { Title: title, Year: year, Genre: genres };
-    collected_movies.push(newMovie);
-  } catch (error) {
-    console.error("Error reading URL", movie_url, ":", error.message);
+  var collected_movies = [];
+  // api key is built into testing, otherwise add key to parameter, then append to url.
+  // Example const api = "&apikey=f061929b"; movies[i] +api;
+  const axios = require("axios");
+  for (var i = 0; i < movies.length; i++) {
+    var movie_url = movies[i];
+    try {
+      const response = await axios.get(movie_url);
+      let title = response.data.Title;
+      let year = response.data.Year;
+      let genres = response.data.Genre;
+      let newMovie = { Title: title, Year: year, Genre: genres };
+      collected_movies.push(newMovie);
+    } catch (error) {
+      console.error("Error reading URL", movie_url, ":", error.message);
+    }
   }
-}
-	return collected_movies;
+  return collected_movies;
 };
 
 
