@@ -15,7 +15,12 @@ module.exports.run = function(csv){
 
 	Write your code below the comment.
 */
-
+const csvCheck = isCSVString(csv);
+if (csvCheck) {
+  console.log("Input is a CSV string file");
+} else {
+  console.log("Input is not a CSV string file");
+}
 const [headers, ...row_values] = convertCSVTo2DArray(csv);
 
 const arrayObjects = convertNestedArraysToObjects(headers, row_values);
@@ -37,3 +42,11 @@ function convertNestedArraysToObjects(headers, row_values) {
     return object;
   });
 };
+
+function isCSVString(string) {
+  // regular expression to test format of CSV file
+  const csvRegex =
+    /^([a-zA-Z0-9]+,)*[a-zA-Z0-9]+(\n([a-zA-Z0-9]+,)*[a-zA-Z0-9]+)*$/;
+  // Test input against regular expression
+  return csvRegex.test(string);
+}
