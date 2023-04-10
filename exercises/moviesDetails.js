@@ -20,7 +20,7 @@ module.exports.run = async function(movies) {
 */
   var collected_movies = [];
   // api key is built into testing, otherwise add key to parameter, then append to url.
-  // Example const api = "&apikey=f061929b"; movies[i] +api;
+  // Example const api = "&apikey=########"; movies[i] +api;
   const axios = require("axios");
   for (var i = 0; i < movies.length; i++) {
     var movie_url = movies[i];
